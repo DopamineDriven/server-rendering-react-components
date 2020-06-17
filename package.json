@@ -1,0 +1,36 @@
+{
+  "name": "server-rendering-react-components",
+  "version": "1.0.0",
+  "description": "🐜 SSR React App custom Webpack 🐜",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DopamineDriven/server-rendering-react-components.git"
+  },
+  "keywords": [],
+  "author": "Andrew Ross",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DopamineDriven/server-rendering-react-components/issues"
+  },
+  "homepage": "https://github.com/DopamineDriven/server-rendering-react-components#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

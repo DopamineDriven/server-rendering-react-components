@@ -128,7 +128,68 @@
         }
         ```
 ## Recap
-- First, create tsconfig in root
+- Open the new vscode project and open the terminal 
+```git
+npm init -y
+```
+- now, install dependencies and dev dependencies (can be achieved in one entry)
+```git
+npm i compression express path react react-dom react-router-dom && npm i --save-dev @babel/core @babel/node @babel/preset-env @babel/preset-react @types/compression @types/dotenv @types/express @types/node @types/react @types/react-dom @types/react-router-dom @typescript-eslint/eslint-plugin @typescript-eslint/parser awesome-typescript-loader babel-eslint babel-loader babel-preset-react-app css-loader cssnano dotenv file-loader html-webpack-plugin mini-css-extact-plugin nodemon npm-run-all postcss-loader source-map-loader style-loader svg-inline-loader ts-loader ts-node typescript url-loader webpack webpack-bundle-analyzer webpack-cli webpack-dev-server
+```
+- hit enter, now your package.json will look as follows
+```json
+    {
+	"dependencies": {
+		"compression": "^1.7.4",
+		"express": "^4.17.1",
+		"path": "^0.12.7",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-router-dom": "^5.2.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.10.2",
+		"@babel/node": "^7.10.1",
+		"@babel/preset-env": "^7.10.2",
+		"@babel/preset-react": "^7.10.1",
+		"@types/compression": "^1.7.0",
+		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.6",
+		"@types/node": "^14.0.13",
+		"@types/react": "^16.9.37",
+		"@types/react-dom": "^16.9.8",
+		"@types/react-router-dom": "^5.1.5",
+		"@typescript-eslint/eslint-plugin": "^3.3.0",
+		"@typescript-eslint/parser": "^3.3.0",
+		"awesome-typescript-loader": "^5.2.1",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.1.0",
+		"babel-preset-react-app": "^9.1.2",
+		"css-loader": "^3.6.0",
+		"cssnano": "^4.1.10",
+		"dotenv": "^8.2.0",
+		"file-loader": "^6.0.0",
+		"html-webpack-plugin": "^4.3.0",
+		"mini-css-extract-plugin": "^0.9.0",
+		"nodemon": "^2.0.4",
+		"npm-run-all": "^4.1.5",
+		"postcss-loader": "^3.0.0",
+		"source-map-loader": "^1.0.0",
+		"style-loader": "^1.2.1",
+		"svg-inline-loader": "^0.8.2",
+		"ts-loader": "^7.0.5",
+		"ts-node": "^8.10.2",
+		"typescript": "^3.9.5",
+		"url-loader": "^4.1.0",
+		"webpack": "^4.43.0",
+		"webpack-bundle-analyzer": "^3.8.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.11.0"
+	}
+}
+
+```
+- next, create tsconfig in root
 ```json
 {
 	"compilerOptions": {
@@ -195,7 +256,25 @@ console.log(`[app]: http://localhost:${process.env.PORT}`);
     ]
 }
 ```
-- create a client folder in the root directory
+- then, add a start script to your package.json as follows
+```json
+{
+
+	"scripts": {
+    "start": "nodemon server/index.ts"
+    },
+
+}
+```
+- start the server
+```git
+npm run start
+```
+- you will now see the content of the h1 tags from the server displayed in the browser
+    - React+TypeScript make for a most excellent dev experience
+        - (a hard truth)
+
+- great, now create a client folder in the root directory
 - then create another tsconfig.json file within the client folder as follows
 ```json
 {
@@ -391,4 +470,6 @@ console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
     - there you have it, pretty straightforward after all
 
 - note
-    - navigating to http://localhost:7777/client.js serves all the content of the build file in the browser, give it a try
+    - navigating to http://localhost:7777/client.js serves all the content of the output dist/client.js file in the browser, give it a try
+
+------------------------------------------------------------------------------------------------------------------------------------

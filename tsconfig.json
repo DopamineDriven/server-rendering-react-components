@@ -8,5 +8,5 @@
 		"esModuleInterop": true,
 		"strict": true
 	},
-	"exclude": ["node_modules", "temp", "_src"]
+	"exclude": ["node_modules", "temp", "_src", "client/**", "public", "dist"]
 }

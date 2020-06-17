@@ -7,7 +7,8 @@
 		"node": "14.4.0"
 	},
 	"scripts": {
-		"start": "nodemon server/index.ts"
+    "start": "nodemon server/index.ts",
+    "build": "webpack"
 	},
 	"repository": {
 		"type": "git",
@@ -57,6 +58,7 @@
 		"postcss-loader": "^3.0.0",
 		"source-map-loader": "^1.0.0",
 		"style-loader": "^1.2.1",
+		"svg-inline-loader": "^0.8.2",
 		"ts-loader": "^7.0.5",
 		"ts-node": "^8.10.2",
 		"typescript": "^3.9.5",

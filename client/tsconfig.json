@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"module": "CommonJS",
+		"target": "es5",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"rootDir": "./client",
+		"allowJs": true,
+		"skipLibCheck": true,
+		"removeComments": true,
+		"outDir": "./build/",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true
+	},
+	"include": ["client.tsx"],
+	"exclude": ["node_modules"]
+}

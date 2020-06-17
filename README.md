@@ -112,3 +112,19 @@
     - usually outputs JS
 - Uses plugins to add functionality modularly
     - babel-react-plugin, for example 
+- So, it supports ECMAScripting in JS environments
+    - yet this is typescript so not relevant
+    - but if it were a javascript environment then
+        - use
+        ```json
+        {
+            "start": "babel-node server/index.js"
+        }
+        ```
+        - with nodemon, use
+        ```json
+        {
+            "start": "nodemon --exec babel-node server/index.js"
+        }
+        ```
+

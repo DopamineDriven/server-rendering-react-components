@@ -157,7 +157,6 @@
 		"es6": true
 	},
 	"rules": {
-		// could set "indent": [true, "tabs", 1]
 		"indent": "off",
 		"@typescript-eslint/indent": "off",
 		"@typescript-eslint/explicit-function-return-type": "off"
@@ -177,8 +176,6 @@ import express from "express";
 
 const app = express();
 
-app.use(express.static("dist"));
-
 app.get("/", (_req, res) => {
     res.send(
         `<h1>React+TypeScript make for a most excellent dev experience</h1>`
@@ -187,7 +184,6 @@ app.get("/", (_req, res) => {
 
 app.listen(process.env.PORT);
 console.log(`[app]: http://localhost:${process.env.PORT}`);
-console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
 ```
 - then, create .babelrc in root to define presets supporting react
 ```json
@@ -314,27 +310,28 @@ module.exports = {
 - the following two properties dictate the entry and output properties of webpack, respectively
 ```js
 module.exports = {
-    // ...
+    
+    
+    
     entry: {
         client: "./client/client.tsx"
     },
     output: {
         filename: "[name].js"
     },
-    // ...
+
+    
     }
 ```
 - now, navigate to the package.json file and add a build script
 ```json
 {
-    //
 
 	"scripts": {
     "start": "nodemon server/index.ts",
     "build": "webpack"
     },
 
-    //
 }
 ```
 - the build script will take the contents of the client folder and output them in a dist folder in the root
@@ -392,3 +389,6 @@ console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
     - it statically serves the content of files from within the indicated root directory via express
     - now, if you navigate to http://localhost:7777 the content of the App component rendered in client.tsx is displayed
     - there you have it, pretty straightforward after all
+
+- note
+    - navigating to http://localhost:7777/client.js serves all the content of the build file in the browser, give it a try

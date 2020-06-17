@@ -103,10 +103,6 @@
     - No choice of tooling 
     - Difficult to implement features not already supported 
 
-## Creating a Project and Installing Dependencies
-- source code
-    - https://github.com/danielstern/server-rendered-react-app
-
 ## What is Babel?
 - Node utility which converts code from one language to another 
     - usually outputs JS

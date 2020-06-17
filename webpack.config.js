@@ -1,53 +1,22 @@
 const webpack = require("webpack");
-// const path = require("path");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
 process.env.NODE_ENV === "development";
 
 module.exports = {
     mode: "development",
-    // (a)
     target: "web",
     devtool: "source-map",
     entry: {
         client: "./client/client.tsx"
     },
-    // (b)
     output: {
-        // path: path.resolve(__dirname, "build"),
-        // publicPath: "/",
         filename: "[name].js"
     },
-    // devServer: {
-    //     // (c)
-    //     port: 7000,
-    //     proxy: {
-    //         "/api": {
-    //             target: 'http://localhost:3000',
-    //             secure: false
-    //         }
-    //     },
-    //     stats: "minimal",
-    //     overlay: true,
-    //     historyApiFallback: true,
-    //     disableHostCheck: true,
-    //     headers: { "Access-Control-Allow-Origin" : "*" },
-    //     https: false
-    // },
-    // (d)
     plugins: [
-        // new webpack.DefinePlugin({
-        //     "process.env.API_URL": JSON.stringify("http://localhost:5000")
-        // }),
         new webpack.HotModuleReplacementPlugin()
-        // new HtmlWebpackPlugin({
-        //     template: "src/index.html",
-        //     favicon: "src/favicon.ico"
-        // })
     ],
     resolve: {
         extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
-    // (e)
     module: {
         rules: [
             {
@@ -80,6 +49,35 @@ module.exports = {
         ]
     }
 };
+
+
+// const path = require("path");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
+        // new webpack.DefinePlugin({
+        //     "process.env.API_URL": JSON.stringify("http://localhost:5000")
+        // }),
+        // new HtmlWebpackPlugin({
+        //     template: "src/index.html",
+        //     favicon: "src/favicon.ico"
+        // })
+
+    // devServer: {
+    //     // (c)
+    //     port: 7000,
+    //     proxy: {
+    //         "/api": {
+    //             target: 'http://localhost:3000',
+    //             secure: false
+    //         }
+    //     },
+    //     stats: "minimal",
+    //     overlay: true,
+    //     historyApiFallback: true,
+    //     disableHostCheck: true,
+    //     headers: { "Access-Control-Allow-Origin" : "*" },
+    //     https: false
+    // },
+    // (d)
 
 // ,
 //  "babel": {

@@ -127,4 +127,268 @@
             "start": "nodemon --exec babel-node server/index.js"
         }
         ```
+## Recap
+- First, create tsconfig in root
+```json
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"module": "CommonJS",
+		"rootDir": "./server",
+		"outDir": "./_src",
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"strict": true
+	},
+	"exclude": ["node_modules", "temp", "_src", "client/**", "public", "dist"]
+}
+```
+- then, create .eslintrc.json in root
+```json
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module"
+	},
+	"extends": ["plugin:@typescript-eslint/recommended"],
+	"env": {
+		"node": true,
+		"es6": true
+	},
+	"rules": {
+		// could set "indent": [true, "tabs", 1]
+		"indent": "off",
+		"@typescript-eslint/indent": "off",
+		"@typescript-eslint/explicit-function-return-type": "off"
+    }
+}
+```
+- now, create a .env file in the root directory defining the PORT used
+```env
+PORT=7777
+```
+- next, create the server directory with an index.ts file
+- server/index.ts
+```ts
+import * as dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 
+const app = express();
+
+app.use(express.static("dist"));
+
+app.get("/", (_req, res) => {
+    res.send(
+        `<h1>React+TypeScript make for a most excellent dev experience</h1>`
+    );
+});
+
+app.listen(process.env.PORT);
+console.log(`[app]: http://localhost:${process.env.PORT}`);
+console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
+```
+- then, create .babelrc in root to define presets supporting react
+```json
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "babel-preset-react-app"
+    ]
+}
+```
+- create a client folder in the root directory
+- then create another tsconfig.json file within the client folder as follows
+```json
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"module": "CommonJS",
+		"target": "es6",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"rootDir": "./client",
+		"allowJs": true,
+		"skipLibCheck": true,
+		"removeComments": true,
+		"outDir": "./build/",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true
+	},
+	"include": ["client.tsx"],
+	"exclude": ["node_modules"]
+}
+```
+- this tsconfig file is specific for support JSX -> react
+    - it also defines the rootDir as ./client -- perfect
+- now, create a client.tsx file within the client folder as follows
+```tsx
+import React from "react";
+import { render } from "react-dom";
+
+const App = () => <div>This is a React component ja feel</div>;
+
+render(<App />, document.querySelector("#container"));
+```
+- great, now create a public folder in the root directory of the app
+- within the public folder, create an index.html file as follows
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie-edge" />
+		<title>SSR React Components with TypeScript</title>
+	</head>
+	<body>
+		<div id="container">
+			React code goes here
+        </div>
+        <script src="client.js"></script>
+	</body>
+</html>
+```
+- the script tag called will make more since momentarily, I promise
+
+- next, create a webpack.config.js file in the root directory
+```js
+const webpack = require("webpack");
+process.env.NODE_ENV === "development";
+
+module.exports = {
+    mode: "development",
+    target: "web",
+    devtool: "source-map",
+    entry: {
+        client: "./client/client.tsx"
+    },
+    output: {
+        filename: "[name].js"
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    resolve: {
+        extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "ts-loader"
+                }
+            },
+            {
+                test: /\.js/,
+                loader: ["source-map-loader"]
+            },
+            {
+                test: /\.svg$/,
+                use: ["svg-inline-loader"]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ["file-loader"]
+            },
+            {
+                test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+                use: ["url-loader"]
+            },
+            {
+                test: /(\.css)$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    }
+};
+```
+- the following two properties dictate the entry and output properties of webpack, respectively
+```js
+module.exports = {
+    // ...
+    entry: {
+        client: "./client/client.tsx"
+    },
+    output: {
+        filename: "[name].js"
+    },
+    // ...
+    }
+```
+- now, navigate to the package.json file and add a build script
+```json
+{
+    //
+
+	"scripts": {
+    "start": "nodemon server/index.ts",
+    "build": "webpack"
+    },
+
+    //
+}
+```
+- the build script will take the contents of the client folder and output them in a dist folder in the root
+- but what will the file be titled? recall the following
+```js
+module.exports = {
+    // ...
+    entry: {
+        client: "./client/client.tsx"
+    },
+    output: {
+        filename: "[name].js"
+    },
+    // ...
+    }
+```
+- the output filename property is indicating to webpack to mimic the title of the root file in the client folder
+    - therefore, the output file is client.js
+- now, open the terminal and
+```git
+npm run build
+```
+- this builds the client.js file output in the dist folder using the contents of the client/client.tsx file
+
+
+- recall that mysterious script tag in the public index.html file, bet you know what it does now
+```html
+<script src="client.js"></script>
+```
+- this creates a way for the dist/client.js file to be referenced
+- ...but how to go about this? 
+    - Enter the native file-system module and express
+    - navigate to server/index.ts, which will now look as follows
+```ts
+import * as dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import { readFileSync } from "fs";
+
+const app = express();
+
+app.use(express.static("dist"));
+
+app.get("/", (_req, res) => {
+    const index = readFileSync(`public/index.html`, `utf-8`);
+    res.send(index);
+});
+
+app.listen(process.env.PORT);
+console.log(`[app]: http://localhost:${process.env.PORT}`);
+console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
+```
+- readFileSync takes the path to a file as the first argument and the charset specified as the second argument
+- but what does the app.use(express.static("dist")); line of code above the express call do?
+    - it statically serves the content of files from within the indicated root directory via express
+    - now, if you navigate to http://localhost:7777 the content of the App component rendered in client.tsx is displayed
+    - there you have it, pretty straightforward after all

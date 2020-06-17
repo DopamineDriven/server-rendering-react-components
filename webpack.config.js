@@ -6,7 +6,7 @@ module.exports = {
     target: "web",
     devtool: "source-map",
     entry: {
-        client: "./client/client.tsx"
+        client: "./src/client/client.tsx"
     },
     output: {
         filename: "[name].js"
@@ -27,7 +27,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.js/,
+                test: /\.js$/,
                 loader: ["source-map-loader"]
             },
             {

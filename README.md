@@ -109,8 +109,8 @@
 - Uses plugins to add functionality modularly
     - babel-react-plugin, for example 
 - So, it supports ECMAScripting in JS environments
-    - yet this is typescript so not relevant
-    - but if it were a javascript environment then
+    - yet this is typescript so not relevant for the following usecase
+    - but if it were a javascript environment, then
         - use
         ```json
         {
@@ -123,6 +123,7 @@
             "start": "nodemon --exec babel-node server/index.js"
         }
         ```
+        - this would support Modern ECMAScripting in Node (import/export) 
 ## Recap
 - Open the new vscode project and open the terminal 
 ```git
@@ -467,3 +468,26 @@ console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
     - navigating to http://localhost:7777/client.js serves all the content of the output dist/client.js file in the browser, give it a try
 
 ------------------------------------------------------------------------------------------------------------------------------------
+
+## Rendering Comparison -- Client vs Server
+- SSR
+    - Component sent as pure HTML
+        - Needs to be rehydrated to achieve interactivity
+    - AJAX reqs are server-to-server (hidden from client)
+        - more secure than client-to-server communications (diminished likelihood of XSS or CSRF attacks)
+    - Server provides most of the required processing power 
+        - cloud computing -> granular control over how much power a server has
+- CSR
+    - Components fully functional 
+        - no rehydration required
+    - AJAX reqs are client-to-server
+        - viewable by technically adept users -> vulnerabilities
+    - Most of the required processing power provided by the client
+        - save some processing power from the server
+        - however, if client has slow device, this may deter them from using app altogether
+
+## Workflow -- Server Rendering
+- (1) load react component and application state into server memory
+- (2) Using the state, render component to an HTML string
+- (3) Send HTML string to the client
+

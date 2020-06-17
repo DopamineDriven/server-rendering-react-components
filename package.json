@@ -7,8 +7,8 @@
 		"node": "14.4.0"
 	},
 	"scripts": {
-    "start": "nodemon server/index.ts",
-    "build": "webpack"
+		"start": "nodemon src/index.ts",
+		"build": "webpack"
 	},
 	"repository": {
 		"type": "git",
@@ -67,5 +67,5 @@
 		"webpack-bundle-analyzer": "^3.8.0",
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "^3.11.0"
-	}
+  }
 }

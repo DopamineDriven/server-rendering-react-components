@@ -15,7 +15,7 @@ module.exports = {
     output: {
         // path: path.resolve(__dirname, "build"),
         // publicPath: "/",
-        filename: "[name].ts"
+        filename: "[name].js"
     },
     // devServer: {
     //     // (c)

@@ -330,9 +330,10 @@ render(<App />, document.querySelector("#container"));
 	</body>
 </html>
 ```
-- the script tag called will make more since momentarily, I promise
+- the script tag called will make more since momentarily, promise
 
-- next, create a webpack.config.js file in the root directory
+
+- next, create webpack.config.js in the root directory
 ```js
 const webpack = require("webpack");
 process.env.NODE_ENV === "development";
@@ -402,7 +403,7 @@ module.exports = {
     
     }
 ```
-- now, navigate to the package.json file and add a build script
+- now, navigate to package.json and add a build script
 ```json
 {
 
@@ -417,14 +418,11 @@ module.exports = {
 - but what will the file be titled? recall the following
 ```js
 module.exports = {
-    // ...
-    entry: {
-        client: "./client/client.tsx"
-    },
+
     output: {
         filename: "[name].js"
     },
-    // ...
+
     }
 ```
 - the output filename property is indicating to webpack to mimic the title of the root file in the client folder

@@ -1,3 +1,14 @@
 import React from "react";
+import { questions, answers } from "../lib";
 
-export const App = () => <div>This is a React component ja feel</div>;
+interface Props {
+    answers: any;
+    questions: any;
+}
+
+export const App = ({ answers, questions }: Props) => {
+	return (
+        <div>This is a React component ja feel</div>
+        // {questions.map(({ _id, questionId, content }))}
+    );
+};

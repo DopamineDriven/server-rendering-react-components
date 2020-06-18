@@ -491,3 +491,40 @@ console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
 - (2) Using the state, render component to an HTML string
 - (3) Send HTML string to the client
 
+## Exploring the Challenges of SSR
+- Server and Client communicate differently
+    - For example, consider an external API
+        - Servers use HTTP
+            - much more secure
+        - Clients use AJAX
+            - much less secure
+- Code must function and be thoroughly tested on both the client and the server
+    - additional testing
+    - What if code runs even slightly differently on the client than it does on the server?
+        - the whole app can break
+        - Why?
+            - Server expects markup to be exactly the same 
+                - circling back to increased testing
+- Increasingly sophisticated development process
+    - may need to add an additional component library
+        - can view each component individually in a developer portal
+        - reduces confusion insofar as whether a component is functioning correctly
+            - otherwise, left wondering if working correctly as rendered on client vs servers output
+- More and unusual bugs -- a whole new class of bugs 
+    - requires expertise and more time to solve 
+    - application may seem to work only to break in another obscure situation 
+        - for example, SSR works on every page of app but one
+            - so, CSR may still work on this page but what happens if a user does a hard refresh?
+                - the page crashes because SSR doesn't function as intended -- oops!
+                - hard to find, hard to figure out, hard to fix
+
+## Adding functionality
+- create default state for app
+    - consists of questions collection and answers collection
+- create React component that renders state
+    - combines questions and answers into single, hierarchical list
+- using state and component made
+    - render component on server and send HTML string to client
+        - rapid loading! yet it is still thirsty
+            - rehydration required
+ 

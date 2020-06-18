@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { connectDatabase } from "../database";
 
 const clear = async () => {

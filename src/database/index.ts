@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { MongoClient } from "mongodb";
 import { Answer, Database, Question } from "../lib/types";
 

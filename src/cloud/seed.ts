@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { ObjectId } from "mongodb";
 import { connectDatabase } from "../database";
 import { Answer, Question } from "../lib/types";

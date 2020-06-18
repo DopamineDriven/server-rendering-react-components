@@ -34,7 +34,7 @@ const mount = async (app: Application) => {
 		Helmet()
 	);
 
-	const serverApp = React.createElement(App, null, `${{...questions}}`);
+	const serverApp = React.createElement(App, null, questions);
 
 	app.get("/", async (_req, res) => {
 		const index = readFileSync(`public/index.html`, `utf-8`);

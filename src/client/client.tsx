@@ -1,6 +1,6 @@
 import React from "react";
 import { hydrate } from "react-dom";
 import { App }  from "./App";
-import { questions } from "../lib";
+import { questions, answers } from "../lib";
 
-hydrate(<App questions={questions} />, document.querySelector("#container"));
+hydrate(<App questions={questions} answers={answers} />, document.querySelector("#container"));

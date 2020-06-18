@@ -10,6 +10,7 @@ import ReactDOMServer from "react-dom/server";
 import { App } from "./client/App";
 import { connectDatabase } from "./database";
 import { Question, Answer } from "./lib/types";
+import { answers, questions } from './lib';
 
 const data = async () => {
 	const db = await connectDatabase();
@@ -20,6 +21,10 @@ const data = async () => {
 	console.log(questions);
 };
 
+data();
+
+const qa = [answers, questions];
+
 const mount = async (app: Application) => {
 	app.use(
 		compression(),
@@ -29,9 +34,11 @@ const mount = async (app: Application) => {
 		Helmet()
 	);
 
+	const serverApp = React.createElement(App, null, `${{...questions}}`);
+
 	app.get("/", async (_req, res) => {
 		const index = readFileSync(`public/index.html`, `utf-8`);
-		const rendered = ReactDOMServer.renderToString(React.createElement(App));
+		const rendered = ReactDOMServer.renderToString((serverApp));
 		res.send(index.replace("{{ rendered }}", rendered));
 		// res.send(
 		//     `<h1>React+TypeScript make for a most excellent dev experience</h1>`

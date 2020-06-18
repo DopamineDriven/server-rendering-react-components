@@ -5,10 +5,22 @@ import React from "react";
 import { readFileSync } from "fs";
 import { renderToString } from "react-dom/server";
 import { App } from "./client/App";
+import { connectDatabase } from "./database";
 
 const app = express();
 
 app.use(express.static("dist"));
+
+const mount = async () => {
+	const db = await connectDatabase();
+
+	const answers = await db.answers.find({}).toArray();
+	const questions = await db.questions.find({}).toArray();
+
+	console.log(answers);
+	console.log(questions);
+}
+mount();
 
 app.get("/", async (_req, res) => {
     const index = readFileSync(`public/index.html`, `utf-8`);

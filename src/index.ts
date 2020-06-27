@@ -10,22 +10,16 @@ import ReactDOMServer from "react-dom/server";
 import { App } from "./client/App";
 import { connectDatabase } from "./database";
 import { Question, Answer } from "./lib/types";
-import { answers, questions } from './lib';
 
-const data = async () => {
+const mount = async (app: Application) => {
+
 	const db = await connectDatabase();
 	const answers: Answer[] = await db.answers.find({}).toArray();
 	const questions: Question[] = await db.questions.find({}).toArray();
 
 	console.log(answers);
 	console.log(questions);
-};
-
-data();
-
-const qa = [answers, questions];
-
-const mount = async (app: Application) => {
+	
 	app.use(
 		compression(),
 		express.json({ limit: "2mb" }),

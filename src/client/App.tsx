@@ -7,18 +7,18 @@ interface Props {
     answers: Answer[];
 }
 
-export const App = ({ questions, answers }: Props) => {
+export const App: FunctionComponent<Props> = ({ questions }) => {
 	return (
-		<div>
+		<section>
 			<h1>Q&A Tool</h1>
-			{questions.map(({_id, questionID, content}) =>(
-                <div key={questionID}>
-                    <h3>
-                        {_id}
-                        {content}
-                    </h3>
+			{questions.map((question) =>(
+                <div key={question.questionID}>
+                    <div>
+                        {question._id}
+                        {question.content}
+                    </div>
                 </div>
             ))}
-		</div>
+		</section>
 	);
 };

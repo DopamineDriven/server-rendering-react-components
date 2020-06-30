@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"jsx": "react",
-		"target": "ESNext",
+		"target": "es5",
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"module": "CommonJS",
 		"rootDir": "./src",
@@ -10,6 +10,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
 		"outDir": "./_src",
+		"moduleResolution": "node",
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"strict": true,

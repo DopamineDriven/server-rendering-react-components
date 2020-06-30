@@ -1,24 +1,27 @@
-import React, { FunctionComponent } from "react";
-
-import { Question, Answer } from "../lib/types";
+import React, { FC } from "react";
+import { Question, Answer } from "../lib";
 
 interface Props {
-    questions: Question[];
-    answers: Answer[];
+	questions: Question[];
+	answers: Answer[];
 }
 
-export const App: FunctionComponent<Props> = ({ questions }) => {
+export const App: FC<Props> = ({ answers, questions }) => {
+
 	return (
-		<section>
-			<h1>Q&A Tool</h1>
-			{questions.map((question) =>(
-                <div key={question.questionID}>
-                    <div>
-                        {question._id}
-                        {question.content}
-                    </div>
-                </div>
-            ))}
-		</section>
+		<>
+			{questions.map((currentQuestion) => {
+				const inSection = answers.filter(
+					(answer) => answer.question === currentQuestion
+				)
+
+				return (
+                <section
+                    key={}         
+                    content={currentQuestion}
+                    answers={inSection}                    
+                />;)
+			})}
+		</>
 	);
 };

@@ -39,8 +39,18 @@ const mount = async (app: Application) => {
 		// );
 	});
 
+	app.get("/questions", (_req, res) => {
+		return res.json(questions)
+	});
+
+	app.get("/answers", (_req, res) => {
+		return res.json(answers)
+	});
+
 	app.listen(process.env.PORT);
 	console.log(`[app]: http://localhost:${process.env.PORT}`);
+	console.log(`[app]: http://localhost:${process.env.PORT}/answers`);
+	console.log(`[app]: http://localhost:${process.env.PORT}/questions`);
 	console.log(`[app]: http://localhost:${process.env.PORT}/client.js`);
 };
 

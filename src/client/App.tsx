@@ -7,10 +7,15 @@ interface Props {
 }
 
 const App: FC<Props> = ({ answers, questions }) => {
-    
+	console.log(questions)
+	console.log(answers)
 	return (
 		<>
-			{questions.map((currentQuestion) => {
+			<div>
+				{questions}
+				{answers}
+			</div>
+			{/* {questions.map((currentQuestion) => {
 				const inSection = answers.filter(
 					(answer) => answer.question === currentQuestion
 				)
@@ -21,7 +26,7 @@ const App: FC<Props> = ({ answers, questions }) => {
                     content={currentQuestion}
                     answers={inSection}                    
                 />;)
-			})}
+			})} */}
 		</>
 	);
 };

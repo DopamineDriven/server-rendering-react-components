@@ -6,8 +6,8 @@ interface Props {
 	answers: Answer[];
 }
 
-export const App: FC<Props> = ({ answers, questions }) => {
-
+const App: FC<Props> = ({ answers, questions }) => {
+    
 	return (
 		<>
 			{questions.map((currentQuestion) => {
@@ -25,3 +25,5 @@ export const App: FC<Props> = ({ answers, questions }) => {
 		</>
 	);
 };
+
+export default App;

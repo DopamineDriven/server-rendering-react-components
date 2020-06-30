@@ -7,7 +7,7 @@ import cors from "cors";
 import Helmet from "helmet";
 import { readFileSync } from "fs";
 import ReactDOMServer from "react-dom/server";
-import { App } from "./client/App";
+import App from "./client/App";
 import { connectDatabase } from "./database";
 import { Question, Answer } from "./lib/types";
 
@@ -28,7 +28,7 @@ const mount = async (app: Application) => {
 		Helmet()
 	);
 
-	const serverApp = React.createElement(App, null, questions);
+	const serverApp = React.createElement(App);
 
 	app.get("/", async (_req, res) => {
 		const index = readFileSync(`public/index.html`, `utf-8`);

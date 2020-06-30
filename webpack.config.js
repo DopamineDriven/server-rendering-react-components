@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+import webpack from "webpack";
 process.env.NODE_ENV === "development";
 
 module.exports = {

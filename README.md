@@ -1,5 +1,17 @@
 # server-rendering-react-components
 
+- Ordering matters for Plugins/Presets
+	- Plugins run before presets
+	- Plugin ordering is first to last
+	- Preset ordring is last to first
+	- https://babeljs.io/docs/en/6.26.3/plugins#plugin-preset-ordering
+
+- The super tiny compiler
+	- walks you through writing a custom compiler to parse code into an AST
+	- https://github.com/jamiebuilds/the-super-tiny-compiler/blob/master/the-super-tiny-compiler.js
+
+- https://github.com/microsoft/TypeScript-Babel-Starter
+
 ## Server Rendering
 - slower client devices aren't detrimental
 - however, full functionality of app activates after react is fully loaded 
